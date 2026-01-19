@@ -1,15 +1,24 @@
-import java.util.Arrays;
-
 class Solution {
     public int hIndex(int[] citations) {
-        Arrays.sort(citations);
-        int n=citations.length;
-    
-        for(int i=0; i<n; i++){
-            if(citations[i]>=n-i){
-                return n-i;
+        int n = citations.length;
+        int[] arr = new int[n + 1];
+
+        for (int c : citations) {
+            if (c >= n) {
+                arr[n]++;
+            } else {
+                arr[c]++;
             }
         }
+
+        int count = 0;
+        for (int i = n; i >= 0; i--) {
+            count += arr[i];
+            if (count >= i) {
+                return i;
+            }
+        }
+
         return 0;
-}
+    }
 }

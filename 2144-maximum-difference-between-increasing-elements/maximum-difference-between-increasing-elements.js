@@ -3,15 +3,17 @@
  * @return {number}
  */
 var maximumDifference = function(nums) {
-    let maxProfit=0;
+    let min = nums[0];
+    let ans = -1;
 
-    for(let i=0; i<nums.length; i++){
-        for(let j=i+1; j<nums.length; j++){
-            let findProfit= nums[j]-nums[i]
-            if(findProfit > maxProfit){
-                maxProfit = findProfit;
-            }
+    for (let i = 1; i < nums.length; i++) {
+
+        if (nums[i] > min) {
+            ans = Math.max(ans, nums[i] - min);
+        } else {
+            min = nums[i];
         }
     }
-    return maxProfit === 0 ? -1 : maxProfit;
+
+    return ans;
 };

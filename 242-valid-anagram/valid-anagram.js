@@ -4,12 +4,33 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-    if(s.length !== t.length){
+    // if(s.length !== t.length){
+    //     return false;
+    // }
+
+    // let str1 = s.split("").sort().join("");
+    // let str2 = t.split("").sort().join("");
+
+    // return str1 === str2;
+
+    if (s.length !== t.length) {
         return false;
     }
 
-    let str1 = s.split("").sort().join("");
-    let str2 = t.split("").sort().join("");
+    const map = {};
 
-    return str1 === str2;
+    for (let char of s) {
+        map[char] = (map[char] || 0) + 1;
+    }
+
+    for (let char of t) {
+
+        if (!map[char]) {
+            return false;
+        }
+
+        map[char]--;
+    }
+
+    return true;
 };

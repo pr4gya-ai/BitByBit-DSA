@@ -38,3 +38,26 @@ F(n) = F(n - 1) + F(n - 2), for n &gt; 1.
 <ul>
 	<li><code>0 &lt;= n &lt;= 30</code></li>
 </ul>
+
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var fib = function(n) {
+    // Base case: F(0) = 0, F(1) = 1
+    if (n <= 1) return n;
+
+    // Iteratively build up the sequence using two variables
+    // instead of storing the whole array — O(1) space
+    let prev = 0;   // F(i-2)
+    let curr = 1;   // F(i-1)
+
+    for (let i = 2; i <= n; i++) {
+        let next = prev + curr;  // F(i) = F(i-1) + F(i-2)
+        prev = curr;
+        curr = next;
+    }
+
+    return curr;
+};
